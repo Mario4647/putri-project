@@ -3,575 +3,569 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Cek Usia - Dewasa atau Anak-Anak</title>
+    <title>Cek Usia | Verifikasi Dewasa & Anak-Anak</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, 'Segoe UI', 'Poppins', 'Roboto', 'Helvetica Neue', sans-serif;
         }
 
         body {
-            background: linear-gradient(145deg, #f0f9ff 0%, #e6f4fa 100%);
+            background: linear-gradient(135deg, #f5f7fc 0%, #eef2f8 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem 1.5rem;
+            padding: 2rem;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
         }
 
-        /* Container utama - modern card */
-        .main-card {
-            max-width: 650px;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+        .card {
+            max-width: 720px;
             width: 100%;
-            background: white;
-            border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.02);
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.02);
             overflow: hidden;
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
         }
 
-        /* Header dengan aksen biru muda */
         .card-header {
-            background: #3b82f6;
-            background: linear-gradient(135deg, #3b82f6, #60a5fa);
-            padding: 1.8rem 2rem;
-            text-align: center;
-            color: white;
+            background: #ffffff;
+            padding: 1.75rem 2rem;
+            border-bottom: 1px solid #e9edf2;
+        }
+
+        .title-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-section svg {
+            flex-shrink: 0;
         }
 
         .card-header h1 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            margin-bottom: 0.4rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            background: linear-gradient(135deg, #1E3A8A, #2563EB);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .subhead {
+            color: #5b6e8c;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-top: 0.25rem;
+            margin-left: 2.5rem;
+        }
+
+        .card-content {
+            padding: 2rem 2rem 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .input-label {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-
-        .card-header h1 span {
-            background: rgba(255,255,255,0.2);
-            border-radius: 40px;
-            padding: 0.2rem 0.8rem;
-            font-size: 1rem;
+            gap: 0.5rem;
             font-weight: 500;
-        }
-
-        .card-header p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        /* konten utama */
-        .card-content {
-            padding: 2rem 2rem 1.8rem;
-        }
-
-        /* form group modern */
-        .form-group {
-            margin-bottom: 1.8rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            letter-spacing: -0.2px;
+            color: #1f2a44;
+            margin-bottom: 0.65rem;
+            font-size: 0.9rem;
         }
 
         .input-wrapper {
             display: flex;
-            flex-wrap: wrap;
             gap: 12px;
-            align-items: center;
+            flex-wrap: wrap;
         }
 
-        input {
+        .input-wrapper input {
             flex: 1;
             padding: 0.9rem 1.2rem;
             font-size: 1rem;
             border: 1.5px solid #e2e8f0;
-            border-radius: 1.5rem;
-            background-color: #fefefe;
-            transition: all 0.25s ease;
+            border-radius: 18px;
+            background: #ffffff;
+            transition: all 0.2s;
             outline: none;
             font-weight: 500;
-            color: #0f172a;
+            color: #0b1e3a;
+            font-family: 'Inter', monospace;
         }
 
-        input:focus {
+        .input-wrapper input:focus {
             border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59,130,246,0.2);
-            background: white;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
         }
 
-        button {
-            background: #3b82f6;
+        .btn-primary {
+            background: #1e40af;
             border: none;
-            padding: 0.9rem 1.8rem;
-            font-size: 1rem;
+            padding: 0 1.8rem;
+            border-radius: 40px;
             font-weight: 600;
-            border-radius: 2rem;
+            font-size: 0.95rem;
             color: white;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 4px 8px rgba(59,130,246,0.25);
+            transition: all 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.2px;
+            box-shadow: 0 2px 6px rgba(30, 64, 175, 0.2);
         }
 
-        button:hover {
-            background: #2563eb;
-            transform: scale(0.98);
-            box-shadow: 0 2px 5px rgba(59,130,246,0.3);
+        .btn-primary:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(30, 64, 175, 0.2);
         }
 
-        button:active {
-            transform: scale(0.96);
+        .btn-primary:active {
+            transform: translateY(1px);
         }
 
-        /* area pesan hasil */
-        .result-box {
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem 1.2rem;
-            border-radius: 1.2rem;
-            background: #f8fafc;
-            border-left: 6px solid #3b82f6;
-            font-weight: 500;
+        .result-panel {
+            margin: 1.5rem 0 1.8rem;
+            padding: 1.2rem 1.4rem;
+            border-radius: 20px;
+            background: #f8fafd;
+            border-left: 4px solid #3b82f6;
             transition: all 0.2s;
-            min-height: 70px;
             display: flex;
             align-items: center;
+            gap: 12px;
             flex-wrap: wrap;
-            gap: 8px;
         }
 
-        .result-text {
-            font-size: 1.1rem;
-            color: #0f172a;
+        .result-message {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #0f2b3d;
+            line-height: 1.4;
         }
 
-        .result-icon {
-            font-size: 1.5rem;
-        }
-
-        /* Tabel modern (riwayat pengecekan) - rapi dengan border & color */
         .history-section {
-            margin-top: 2rem;
-            border-top: 2px dashed #cbd5e1;
+            margin-top: 1.8rem;
+            border-top: 1.5px solid #edf2f7;
             padding-top: 1.5rem;
         }
 
-        .history-section h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 1rem;
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .history-header h3 {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0c2e4e;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            padding: 0.45rem 1.1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #475569;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+            color: #0f172a;
         }
 
         .table-container {
             overflow-x: auto;
-            border-radius: 1rem;
-            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            border: 1px solid #eef2f8;
             background: white;
         }
 
-        .history-table {
+        .record-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
-            min-width: 280px;
         }
 
-        .history-table th {
-            background-color: #d9eff7;
-            color: #075985;
-            font-weight: 700;
-            padding: 12px 12px;
-            border-bottom: 2px solid #b9d9f0;
+        .record-table th {
+            background: #f1f6fe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 14px 16px;
+            border-bottom: 1.5px solid #dfe9f5;
             text-align: left;
         }
 
-        .history-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #e2edf2;
-            color: #1e293b;
+        .record-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #edf2f9;
+            color: #1e2a47;
             font-weight: 500;
         }
 
-        .history-table tr:last-child td {
+        .record-table tr:last-child td {
             border-bottom: none;
         }
 
-        .history-table tr:hover td {
-            background-color: #f0f9ff;
+        .record-table tr:hover td {
+            background-color: #fafcff;
         }
 
-        /* status badge pada tabel */
-        .badge-dewasa {
-            background: #bbf0e6;
-            color: #0b5e42;
-            padding: 4px 10px;
+        .badge-adult {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 5px 12px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             display: inline-block;
+            letter-spacing: -0.2px;
         }
 
-        .badge-anak {
-            background: #ffe2d6;
-            color: #b45309;
-            padding: 4px 10px;
+        .badge-child {
+            background: #fff1e6;
+            color: #c2410c;
+            padding: 5px 12px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             display: inline-block;
-        }
-
-        /* tombol reset / hapus riwayat */
-        .reset-btn {
-            background: #f1f5f9;
-            color: #334155;
-            box-shadow: none;
-            margin-top: 0.8rem;
-            font-size: 0.85rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid #cbd5e1;
-        }
-
-        .reset-btn:hover {
-            background: #e2e8f0;
-            color: #0f172a;
-            transform: none;
-            box-shadow: none;
         }
 
         .empty-row td {
             text-align: center;
-            color: #64748b;
-            padding: 1.5rem;
+            color: #8196b1;
+            padding: 1.8rem;
+            font-weight: 400;
         }
 
-        footer {
-            background: #f9fefc;
+        .footer-note {
+            background: #fcfdff;
             padding: 1rem 2rem;
             text-align: center;
-            border-top: 1px solid #e0f2fe;
-            font-size: 0.75rem;
-            color: #5b8cb0;
+            border-top: 1px solid #edf2f8;
+            font-size: 0.7rem;
+            color: #7c8ba0;
+            letter-spacing: 0.2px;
         }
 
-        @media (max-width: 500px) {
-            .card-header h1 {
-                font-size: 1.5rem;
+        @media (max-width: 580px) {
+            body {
+                padding: 1rem;
             }
             .input-wrapper {
                 flex-direction: column;
-                align-items: stretch;
             }
-            button {
+            .btn-primary {
                 justify-content: center;
+                padding: 0.9rem;
             }
             .card-content {
                 padding: 1.5rem;
             }
-            .result-text {
-                font-size: 1rem;
+            .card-header {
+                padding: 1.25rem 1.5rem;
+            }
+            .card-header h1 {
+                font-size: 1.4rem;
+            }
+            .subhead {
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
+    <div class="card">
+        <div class="card-header">
+            <div class="title-section">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 13c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z" fill="#3B82F6"/>
+                </svg>
+                <h1>Verifikasi Usia</h1>
+            </div>
+            <div class="subhead">Tentukan status dewasa atau anak-anak berdasarkan batas usia 17 tahun</div>
+        </div>
 
-<div class="main-card">
-    <div class="card-header">
-        <h1>
-            🔍 Cek Status Usia 
-            <span>17+</span>
-        </h1>
-        <p>Masukkan usia Anda untuk mengetahui kategori dewasa atau anak-anak</p>
-    </div>
-    
-    <div class="card-content">
-        <!-- Form input usia -->
-        <div class="form-group">
-            <label>📅 Usia (tahun)</label>
-            <div class="input-wrapper">
-                <input type="number" id="usiaInput" placeholder="Contoh: 17, 12, 25" min="0" max="120" step="1">
-                <button id="cekBtn">✅ Cek Usia</button>
+        <div class="card-content">
+            <div class="input-group">
+                <div class="input-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13h-1v6l5.25 3.15.75-1.23-4.5-2.67z" fill="#5B6E8C"/>
+                    </svg>
+                    <span>Usia (tahun)</span>
+                </div>
+                <div class="input-wrapper">
+                    <input type="number" id="ageInput" placeholder="Masukkan angka usia" min="0" max="120" step="1">
+                    <button class="btn-primary" id="checkBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="white"/>
+                        </svg>
+                        Cek Status
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-panel" id="resultPanel">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="resultIcon">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#3B82F6"/>
+                </svg>
+                <div class="result-message" id="resultMsg">Masukkan usia lalu tekan tombol cek</div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 13c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z" fill="#2563EB"/>
+                        </svg>
+                        Riwayat Pengecekan
+                    </h3>
+                    <button class="btn-secondary" id="resetHistoryBtn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#475569"/>
+                        </svg>
+                        Bersihkan
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="record-table" id="historyTable">
+                        <thead>
+                            <tr><th>No</th><th>Usia</th><th>Status</th><th>Waktu Cek</th></tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <tr class="empty-row"><td colspan="4">Belum ada data pengecekan</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-        <!-- Pesan hasil pengecekan -->
-        <div class="result-box" id="resultBox">
-            <div class="result-icon">💡</div>
-            <div class="result-text" id="resultMessage">Silakan masukkan usia dan tekan tombol cek</div>
-        </div>
-
-        <!-- Tabel riwayat pengecekan (border, warna, rapi) -->
-        <div class="history-section">
-            <h3>
-                📋 Riwayat Pengecekan
-                <button id="resetHistoryBtn" class="reset-btn" style="margin-left:auto; margin-top:0;">🗑️ Hapus Riwayat</button>
-            </h3>
-            <div class="table-container">
-                <table class="history-table" id="historyTable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Usia (tahun)</th>
-                            <th>Status</th>
-                            <th>Waktu</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historyBody">
-                        <tr class="empty-row">
-                            <td colspan="4">Belum ada pengecekan ✨</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="footer-note">
+            <span>✔️ Kriteria: usia ≥ 17 tahun = Dewasa | usia &lt; 17 tahun = Anak-anak</span>
         </div>
     </div>
-    <footer>
-        ⚡ Sistem cerdas | Batas usia dewasa ≥ 17 tahun
-    </footer>
-</div>
 
-<script>
-    (function() {
-        // --- Data storage: array untuk menyimpan riwayat pengecekan (maks 20 entri terbaru)
-        let historyData = [];
+    <script>
+        (function(){
+            let historyRecords = [];
 
-        // --- Elemen DOM
-        const usiaInput = document.getElementById('usiaInput');
-        const cekBtn = document.getElementById('cekBtn');
-        const resultMessageDiv = document.getElementById('resultMessage');
-        const resultBox = document.getElementById('resultBox');
-        const historyBody = document.getElementById('historyBody');
-        const resetHistoryBtn = document.getElementById('resetHistoryBtn');
+            const ageInput = document.getElementById('ageInput');
+            const checkBtn = document.getElementById('checkBtn');
+            const resultPanel = document.getElementById('resultPanel');
+            const resultMsg = document.getElementById('resultMsg');
+            const resultIcon = document.getElementById('resultIcon');
+            const historyBody = document.getElementById('historyBody');
+            const resetBtn = document.getElementById('resetHistoryBtn');
 
-        // --- Helper: mendapatkan timestamp lokal yang rapi
-        function getCurrentTimeString() {
-            const now = new Date();
-            return now.toLocaleString('id-ID', { 
-                day: 'numeric', 
-                month: 'short', 
-                hour: '2-digit', 
-                minute: '2-digit',
-                hour12: false
-            });
-        }
-
-        // --- Fungsi untuk menampilkan pesan hasil utama (dengan gaya modern)
-        function displayResultMessage(usia, status, isError = false) {
-            if (isError) {
-                resultMessageDiv.innerHTML = `⚠️ ${usia}`;
-                resultBox.style.borderLeftColor = '#ef4444';
-                resultBox.style.background = '#fff5f5';
-                return;
-            }
-            
-            // status: 'dewasa' atau 'anak'
-            if (status === 'dewasa') {
-                resultMessageDiv.innerHTML = `✅ ${usia} tahun → Anda sudah dewasa. Selamat beraktivitas!`;
-                resultBox.style.borderLeftColor = '#10b981';
-                resultBox.style.background = '#f0fdf4';
-            } else {
-                resultMessageDiv.innerHTML = `🧒 ${usia} tahun → Anda masih anak-anak. Tumbuhlah dengan ceria!`;
-                resultBox.style.borderLeftColor = '#f97316';
-                resultBox.style.background = '#fff7ed';
-            }
-        }
-
-        // --- Fungsi utama pengecekan logika usia
-        function cekUsia() {
-            // Ambil nilai input, trim dan validasi
-            let rawValue = usiaInput.value.trim();
-            if (rawValue === "") {
-                displayResultMessage("Usia tidak boleh kosong!", "", true);
-                return false;
-            }
-            const usia = Number(rawValue);
-            if (isNaN(usia) || !Number.isInteger(usia) || usia < 0) {
-                displayResultMessage("Masukkan angka usia yang valid (0-120)", "", true);
-                return false;
-            }
-            if (usia > 120) {
-                displayResultMessage("Usia terlalu tinggi, masukkan usia realistis (maks 120)", "", true);
-                return false;
+            function getCurrentTimestamp(){
+                const now = new Date();
+                return now.toLocaleString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute:'2-digit', hour12: false });
             }
 
-            // Logika penentuan status sesuai soal: usia 17 ke atas => dewasa, di bawah 17 => anak-anak
-            let statusText = "";
-            let statusKey = "";   // untuk data
-            if (usia >= 17) {
-                statusText = "Anda sudah dewasa";
-                statusKey = "dewasa";
-            } else {
-                statusText = "Anda masih anak-anak";
-                statusKey = "anak";
-            }
-
-            // Tampilkan pesan ke result box
-            displayResultMessage(usia, statusKey, false);
-
-            // Simpan ke riwayat (tambah data baru di awal array agar terbaru di atas)
-            const newRecord = {
-                id: Date.now() + Math.random(),
-                usia: usia,
-                status: statusKey,
-                statusMessage: statusText,
-                waktu: getCurrentTimeString()
-            };
-            historyData.unshift(newRecord);   // tambah di awal (terbaru paling atas)
-
-            // Batasi riwayat maks 20 agar tidak membebani tampilan
-            if (historyData.length > 20) historyData.pop();
-
-            // Render ulang tabel riwayat
-            renderHistoryTable();
-
-            // Optional: bersihkan input sedikit? Biarkan user bisa langsung cek lagi
-            usiaInput.value = "";
-            usiaInput.focus();
-            return true;
-        }
-
-        // --- Render tabel riwayat dengan border dan warna yang rapi, menampilkan badge sesuai status
-        function renderHistoryTable() {
-            // Bersihkan isi tbody
-            historyBody.innerHTML = "";
-
-            if (!historyData.length) {
-                // tampilkan baris kosong
-                const emptyRow = document.createElement('tr');
-                emptyRow.classList.add('empty-row');
-                emptyRow.innerHTML = `<td colspan="4">Belum ada pengecekan ✨</td>`;
-                historyBody.appendChild(emptyRow);
-                return;
-            }
-
-            // Looping data dan buat baris terbalik? karena kita unshift, index 0 adalah terbaru (paling atas)
-            for (let i = 0; i < historyData.length; i++) {
-                const record = historyData[i];
-                const row = document.createElement('tr');
-
-                // Nomor urut (1 = paling baru)
-                const numberCell = document.createElement('td');
-                numberCell.textContent = (i + 1).toString();
-                numberCell.style.fontWeight = '500';
-
-                // Usia cell
-                const usiaCell = document.createElement('td');
-                usiaCell.textContent = `${record.usia} tahun`;
-                usiaCell.style.fontWeight = '600';
-
-                // Status cell dengan badge warna yang menarik
-                const statusCell = document.createElement('td');
-                if (record.status === 'dewasa') {
-                    statusCell.innerHTML = `<span class="badge-dewasa">✔️ Dewasa (≥17)</span>`;
+            function updateResultUI(age, statusType, isError = false, errorText = ''){
+                if(isError){
+                    resultMsg.innerHTML = errorText;
+                    resultPanel.style.borderLeftColor = '#f97316';
+                    resultPanel.style.background = '#fffaf5';
+                    resultIcon.setAttribute('d', 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z');
+                    resultIcon.setAttribute('fill', '#ea580c');
+                    return;
+                }
+                
+                if(statusType === 'adult'){
+                    resultMsg.innerHTML = `✅ ${age} tahun — Anda sudah dewasa. Akses penuh tersedia.`;
+                    resultPanel.style.borderLeftColor = '#22c55e';
+                    resultPanel.style.background = '#f0fdf4';
+                    resultIcon.setAttribute('d', 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z');
+                    resultIcon.setAttribute('fill', '#15803d');
                 } else {
-                    statusCell.innerHTML = `<span class="badge-anak">🌟 Anak-anak (<17)</span>`;
+                    resultMsg.innerHTML = `🌱 ${age} tahun — Anda masih anak-anak. Tetap semangat belajar!`;
+                    resultPanel.style.borderLeftColor = '#f97316';
+                    resultPanel.style.background = '#fff7ed';
+                    resultIcon.setAttribute('d', 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z');
+                    resultIcon.setAttribute('fill', '#c2410c');
                 }
-
-                // Waktu cell
-                const waktuCell = document.createElement('td');
-                waktuCell.textContent = record.waktu;
-                waktuCell.style.fontSize = '0.8rem';
-                waktuCell.style.color = '#475569';
-
-                row.appendChild(numberCell);
-                row.appendChild(usiaCell);
-                row.appendChild(statusCell);
-                row.appendChild(waktuCell);
-                historyBody.appendChild(row);
             }
-        }
 
-        // --- Reset / Hapus seluruh riwayat
-        function resetHistory() {
-            if (historyData.length > 0) {
-                if (confirm("Hapus semua riwayat pengecekan usia?")) {
-                    historyData = [];
-                    renderHistoryTable();
-                    // Tampilkan notifikasi lembut di result box tapi tidak mengganggu
-                    resultMessageDiv.innerHTML = "🗑️ Riwayat telah dihapus. Lakukan pengecekan baru.";
-                    resultBox.style.borderLeftColor = '#94a3b8';
-                    resultBox.style.background = '#f1f5f9';
-                    setTimeout(() => {
-                        if (resultMessageDiv.innerHTML === "🗑️ Riwayat telah dihapus. Lakukan pengecekan baru.") {
-                            resultMessageDiv.innerHTML = "Silakan masukkan usia dan tekan tombol cek";
-                            resultBox.style.borderLeftColor = '#3b82f6';
-                            resultBox.style.background = '#f8fafc';
-                        }
-                    }, 2500);
+            function addHistoryEntry(ageValue, statusKey, displayMessage){
+                const newEntry = {
+                    id: Date.now() + Math.random(),
+                    usia: ageValue,
+                    status: statusKey,
+                    waktu: getCurrentTimestamp()
+                };
+                historyRecords.unshift(newEntry);
+                if(historyRecords.length > 18) historyRecords.pop();
+                renderHistoryTable();
+            }
+
+            function renderHistoryTable(){
+                historyBody.innerHTML = '';
+                if(historyRecords.length === 0){
+                    const emptyRow = document.createElement('tr');
+                    emptyRow.classList.add('empty-row');
+                    emptyRow.innerHTML = '<td colspan="4">📭 Belum ada data pengecekan</td>';
+                    historyBody.appendChild(emptyRow);
+                    return;
                 }
-            } else {
-                // kasih tahu bahwa belum ada riwayat
-                resultMessageDiv.innerHTML = "ℹ️ Belum ada riwayat untuk dihapus.";
-                resultBox.style.borderLeftColor = '#94a3b8';
-                resultBox.style.background = '#f1f5f9';
-                setTimeout(() => {
-                    if (resultMessageDiv.innerHTML === "ℹ️ Belum ada riwayat untuk dihapus.") {
-                        resultMessageDiv.innerHTML = "Silakan masukkan usia dan tekan tombol cek";
-                        resultBox.style.borderLeftColor = '#3b82f6';
-                        resultBox.style.background = '#f8fafc';
+                
+                for(let i = 0; i < historyRecords.length; i++){
+                    const rec = historyRecords[i];
+                    const row = document.createElement('tr');
+                    
+                    const noCell = document.createElement('td');
+                    noCell.textContent = (i+1).toString();
+                    noCell.style.fontWeight = '500';
+                    
+                    const usiaCell = document.createElement('td');
+                    usiaCell.textContent = `${rec.usia} tahun`;
+                    usiaCell.style.fontWeight = '600';
+                    
+                    const statusCell = document.createElement('td');
+                    if(rec.status === 'adult'){
+                        statusCell.innerHTML = '<span class="badge-adult">✔️ Dewasa (≥17)</span>';
+                    } else {
+                        statusCell.innerHTML = '<span class="badge-child">🌟 Anak-anak (<17)</span>';
                     }
-                }, 1800);
+                    
+                    const waktuCell = document.createElement('td');
+                    waktuCell.textContent = rec.waktu;
+                    waktuCell.style.fontSize = '0.75rem';
+                    waktuCell.style.color = '#4b5565';
+                    
+                    row.appendChild(noCell);
+                    row.appendChild(usiaCell);
+                    row.appendChild(statusCell);
+                    row.appendChild(waktuCell);
+                    historyBody.appendChild(row);
+                }
             }
-        }
 
-        // --- Event listeners
-        cekBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            cekUsia();
-        });
-
-        // Enter key pada input usia juga bisa melakukan pengecekan
-        usiaInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                cekUsia();
+            function performCheck(){
+                let rawValue = ageInput.value.trim();
+                if(rawValue === ""){
+                    updateResultUI(null, null, true, '⚠️ Usia tidak boleh kosong');
+                    return false;
+                }
+                const ageNum = Number(rawValue);
+                if(isNaN(ageNum) || !Number.isInteger(ageNum) || ageNum < 0){
+                    updateResultUI(null, null, true, '❌ Masukkan angka usia yang valid (0-120)');
+                    return false;
+                }
+                if(ageNum > 120){
+                    updateResultUI(null, null, true, '⚠️ Usia maksimal 120 tahun, masukkan angka realistis');
+                    return false;
+                }
+                
+                let statusType = '';
+                let resultMessage = '';
+                if(ageNum >= 17){
+                    statusType = 'adult';
+                    resultMessage = `Anda sudah dewasa`;
+                } else {
+                    statusType = 'child';
+                    resultMessage = `Anda masih anak-anak`;
+                }
+                
+                updateResultUI(ageNum, statusType, false);
+                addHistoryEntry(ageNum, statusType, resultMessage);
+                ageInput.value = '';
+                ageInput.focus();
+                return true;
             }
-        });
 
-        resetHistoryBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            resetHistory();
-        });
-
-        // Optional: validasi tambahan saat input number untuk mencegah huruf
-        usiaInput.addEventListener('input', function() {
-            if (usiaInput.value !== "") {
-                let val = parseInt(usiaInput.value, 10);
-                if (isNaN(val)) {
-                    usiaInput.value = "";
-                } else if (val < 0) usiaInput.value = 0;
-                else if (val > 120) usiaInput.value = 120;
+            function resetHistory(){
+                if(historyRecords.length > 0){
+                    if(confirm('Hapus seluruh riwayat pengecekan usia?')){
+                        historyRecords = [];
+                        renderHistoryTable();
+                        updateResultUI(null, null, true, '🗑️ Riwayat telah dibersihkan');
+                        setTimeout(() => {
+                            if(resultMsg.innerText === '🗑️ Riwayat telah dibersihkan'){
+                                resultMsg.innerHTML = 'Masukkan usia lalu tekan tombol cek';
+                                resultPanel.style.borderLeftColor = '#3b82f6';
+                                resultPanel.style.background = '#f8fafd';
+                                resultIcon.setAttribute('d', 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z');
+                                resultIcon.setAttribute('fill', '#3B82F6');
+                            }
+                        }, 2200);
+                    }
+                } else {
+                    updateResultUI(null, null, true, 'ℹ️ Belum ada riwayat untuk dihapus');
+                    setTimeout(() => {
+                        if(resultMsg.innerText === 'ℹ️ Belum ada riwayat untuk dihapus'){
+                            resultMsg.innerHTML = 'Masukkan usia lalu tekan tombol cek';
+                            resultPanel.style.borderLeftColor = '#3b82f6';
+                            resultPanel.style.background = '#f8fafd';
+                            resultIcon.setAttribute('d', 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z');
+                            resultIcon.setAttribute('fill', '#3B82F6');
+                        }
+                    }, 1800);
+                }
             }
-        });
 
-        // jika halaman pertama kali, cek apakah ada riwayat? tidak ada, tampilkan tabel kosong
-        renderHistoryTable();
-
-        // Set default pesan result box awal
-        resultMessageDiv.innerHTML = "Silakan masukkan usia dan tekan tombol cek";
-        resultBox.style.borderLeftColor = '#3b82f6';
-        resultBox.style.background = '#f8fafc';
-    })();
-</script>
+            checkBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                performCheck();
+            });
+            
+            ageInput.addEventListener('keypress', (e) => {
+                if(e.key === 'Enter'){
+                    e.preventDefault();
+                    performCheck();
+                }
+            });
+            
+            ageInput.addEventListener('input', function(){
+                let val = parseInt(ageInput.value, 10);
+                if(ageInput.value !== ""){
+                    if(isNaN(val)) ageInput.value = "";
+                    else if(val < 0) ageInput.value = 0;
+                    else if(val > 120) ageInput.value = 120;
+                }
+            });
+            
+            resetBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                resetHistory();
+            });
+            
+            renderHistoryTable();
+            resultMsg.innerHTML = 'Masukkan usia lalu tekan tombol cek';
+            resultPanel.style.borderLeftColor = '#3b82f6';
+            resultPanel.style.background = '#f8fafd';
+        })();
+    </script>
 </body>
 </html>
